@@ -48,3 +48,6 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-wpiutil"
 license = "BSD-3-Clause"
 install_requires = []
+
+[tool.robotpy-build.macos_lib_locations]
+"libwpiutil.dylib" = "wpiutil/lib/libwpiutil.dylib"
