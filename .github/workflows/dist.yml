@@ -106,6 +106,13 @@ jobs:
         privateKey: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
+    - name: Upload to devpi
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: robotpy
+        password: ${{ secrets.devpi_password }}
+        repository_url: https://devpi.vovo.id.au/robotpy/bionic/
+
     - name: Ping readthedocs
       uses: wei/curl@v1
       with:
