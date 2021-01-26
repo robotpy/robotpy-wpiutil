@@ -40,9 +40,8 @@ jobs:
         python-version: ${{ matrix.python_version }}
         architecture: ${{ matrix.architecture }}
 
-    - uses: robotpy/build-actions/install-robotpy-build@v2021
-    - uses: robotpy/build-actions/install-build-deps@v2021
-    - uses: robotpy/build-actions/build-wheel@v2021
+    - run: pip install build
+    - run: python -m build --wheel .
     - uses: robotpy/build-actions/test-native-wheel@v2021
 
     - uses: robotpy/build-actions/validate-sphinx@v2021
