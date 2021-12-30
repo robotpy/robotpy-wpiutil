@@ -39,6 +39,8 @@ jobs:
       with:
         python-version: ${{ matrix.python_version }}
         architecture: ${{ matrix.architecture }}
+    - uses: robotpy/build-actions/setup-cxx@gcc-8
+      if: ${{ matrix.os == 'ubuntu-18.04' }}
 
     - uses: robotpy/build-actions/install-robotpy-build@v2021
     - uses: robotpy/build-actions/install-build-deps@v2021
