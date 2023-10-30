@@ -14,6 +14,8 @@
 
 #include <pybind11/functional.h>
 
+struct Something{};
+
 /*
 array tests
 */
@@ -56,6 +58,9 @@ std::span<const double, 3> load_span_fixed_double(std::span<const double, 3> ref
     return ref;
 }
 
+std::span<Something * const> load_span_const_object(std::span<Something *const> ref) {
+    return ref;
+}
 
 std::span<int> cast_span() {
     static std::vector<int> vec{1, 2, 3};
@@ -151,6 +156,8 @@ RPYBUILD_PYBIND11_MODULE(m) {
 
     sendable_test(m);
 
+    py::class_<Something>(m, "Something");
+
     // array
     m.def("load_array_int", &load_array_int);
     m.def("load_array_int1", &load_array_int1);
@@ -166,6 +173,7 @@ RPYBUILD_PYBIND11_MODULE(m) {
     m.def("cast_string_span", &cast_string_span);
     m.def("load_span_bytes", &load_span_bytes);
     m.def("modify_span_buffer", &modify_span_buffer);
+    m.def("load_span_const_object", &load_span_const_object);
     // SmallSet
     m.def("load_smallset_int", &load_smallset_int);
     m.def("cast_smallset", &cast_smallset);
